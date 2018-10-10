@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-6">
+        <input type="text" placeholder="Question..." class="form-control w-75" #myinp (input)="onkeyup(myinp.value)">
+        <input type="text" placeholder="Answer..." class="form-control w-75 mt-2" #answer (input)="onkeyupAnswer(answer.value)">
+    </div>
+    <div class="col-6" [ngStyle]="{'word-break': 'break-word'}" *ngFor="let ansq of answerQuestion">
+        <h3 class="text-left"> {{ansq.questionForInp}} </h3>
+        <p class="text-left"> {{ansq.answerTxt}} </p>
+        <!--<input type="text" class="mt-2 form-control w-100">-->
+    </div>
+</div>

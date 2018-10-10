@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-6 d-flex align-items-center">
+    <input type="text" class="form-control w-75" placeholder="add question" #qst (input)="onkeyup(qst.value)">
+  </div>
+  <div class="col-6" [ngStyle]="{'word-break': 'break-word'}">
+    <h3 class="text-left"> {{ question | titlecase }} </h3>
+    <ul class="text-left p-0 m-0">
+      <li *ngFor="let opt of option; let i=index">
+        <input type="checkbox" class="mt-1" attr.id="id{{i}}"> <label class="ml-2"
+                contenteditable="true" attr.id="{{i}}"
+                tooltipClass="toolTipClass" ngbTooltip="click on the text for write what you want"
+                (keyup.enter)="optVal($event)"  (blur)="optVal($event)" > {{opt}} </label>
+      </li>
+    </ul>
+
+    <button class="btn float-right btn_purple" (click)="addOpt()">+add</button>
+  </div>
+</div>
+
+

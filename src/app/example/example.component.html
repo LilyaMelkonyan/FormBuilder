@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 bg-dark text-center">
+      <h1 class="text-white text-center">Form</h1>
+      <form [formGroup]="profileForm" (ngSubmit)="sendFormValue()" #form="ngForm">
+        <div [hidden]="form.submitted">
+          <div class="col-6 mx-auto text-left">
+            <label class="text-white mb-0">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="aaa"  formControlName="name" required>
+
+            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                 class="alert alert-danger">
+
+              <p *ngIf="name.errors.required" class="mb-0">
+                Name is required.
+              </p>
+              <p *ngIf="name.errors.minlength" class="mb-0">
+                Name must be at least 4 characters long.
+              </p>
+            </div>
+
+          </div>
+          <div class="col-6 mx-auto text-left mt-2">
+            <label class="text-white mb-0">Email</label>
+            <input type="email" class="form-control" formControlName="email" required email>
+
+            <button type="button" class="btn btn-info mt-1" (click)="randomMail()">Random Mail</button>
+
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                 class="alert alert-danger">
+
+              <p *ngIf="email.errors.required" class="mb-0">
+                Email is required.
+              </p>
+              <p *ngIf="email.errors.email" class="mb-0">
+                Email is incorrect.
+              </p>
+            </div>
+
+          </div>
+          <div class="col-6 mx-auto text-left mt-2">
+            <label class="text-white mb-0">Choose</label>
+            <select  class="form-control" formControlName="country" required [ngModel]='defaultCountry'>
+              <option class="text-dark" *ngFor="let country of countries" [value]="country">{{country}}</option>
+            </select>
+
+            <div *ngIf="country.invalid && country.touched" class="alert alert-danger">
+              <p *ngIf="country.errors.required" class="mb-0">Country is required.</p>
+            </div>
+
+          </div>
+          <div class="py-3">
+            <button type="submit" class="btn" [disabled]="form.invalid">Save</button>
+            <button type="button" class="btn ml-2" (click)="form.resetForm()">Reset</button>
+          </div>
+        </div>
+      </form>
+
+      <div *ngIf="form.submitted">
+        <div class="alert alert-info">
+          <pre class="text-dark" style="font-weight: bold"> {{form.value | json }} </pre>
+        </div>
+        <button class="btn my-2" (click)="form.resetForm()">open form and add new one</button>
+      </div>
+    </div>
+
+    <div class="col-12 bg-info py-3">
+      <p class="text-white text-center">{{profileForm.status}}</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+<a [routerLink]="['/example/select']">click select</a>
+<br>
+<a [routerLink]="['/example/question']">click input</a>
+<router-outlet></router-outlet>

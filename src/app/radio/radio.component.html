@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-6 d-flex align-items-center">
+    <input type="text" class="form-control w-75" placeholder="add question" #qstRadio (input)="onkeyupRadio(qstRadio.value)">
+  </div>
+  <div class="col-6" [ngStyle]="{'word-break': 'break-word'}">
+    <h3 class="text-left"> {{ addQstForRadio | titlecase }}</h3>
+    <ul class="text-left p-0 m-0">
+      <li *ngFor="let g of radioArr; let i=index">
+        <input type="radio" class="mt-1" name="radioName{{pData}}" attr.id="gender{{i}}"> <label class="ml-2"
+               contenteditable="true" attr.id="{{i}}" (keyup.enter)="radioVal($event)" (blur)="radioVal($event)"
+               tooltipClass="toolTipClass" ngbTooltip="click on the text for write what you want"> {{ g }} </label>
+      </li>
+    </ul>
+
+    <button class="btn float-right btn_purple" (click)="addNewRadio()">+add</button>
+
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-6">
+    <input type="text" class="form-control w-75" placeholder="add question" #qstSelect (input)="onkeyup(qstSelect.value)">
+    <span class="d-flex mt-2"><input type="text" class="form-control w-75" placeholder="add select option" #foroption>
+                          <button class="btn float-right btn_purple ml-2" (click)="addOpt(foroption.value)">+add</button>
+    </span>
+  </div>
+  <div class="col-6" [ngStyle]="{'word-break': 'break-word'}">
+    <h3 class="text-left"> {{ selectOpt | titlecase }} </h3>
+    <select [ngStyle]="{'margin-top': '8px'}" class="form-control w-100">
+      <option *ngFor="let opt of select" value="{{opt}}"> {{ opt | titlecase }} </option>
+    </select>
+
+  </div>
+</div>
